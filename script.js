@@ -6,14 +6,14 @@ const supabase = createClient(
 )
 async function loadMessages() {
     const { data, error } = await supabase
-        .from('messages')
+        .from('message')
         .select('*')
         .order('created_at', { ascending: false })
     if (error) {
         console.error(error)
         return
 }
-const container = document.getElementById('messages');
+const container = document.getElementById('message');
 container.innerHTML = '';
 data.forEach(item => {
     const div = document.createElement('div');
@@ -37,7 +37,7 @@ form.addEventListener('submit', async function(event) {
     const message = document.getElementById('message').value;
     const author = document.getElementById('author').value;
     const { data, error } = await supabase
-        .from('messages')
+        .from('message')
         .insert([
         {
             title: title,
